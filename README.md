@@ -219,3 +219,14 @@ You should see in your terminal a message indicating that the server is listenin
  ```
     node testBlockChainController.js subsa <signature> <message_from_output_of_first_command> <star_object>
  ```
+
+## Screenshots
+
+### get block by hash
+<img src="https://github.com/Anwesh43/udacity_private_blockchain/blob/master/screenshots/block_by_hash.png" width = "500px" height = "500px">
+
+### get block by height
+<img src="https://github.com/Anwesh43/udacity_private_blockchain/blob/master/screenshots/blockbyheight1.png" width = "500px" height = "500px">
+
+### get stars by owner
+<img src="https://github.com/Anwesh43/udacity_private_blockchain/blob/master/screenshots/stars_by_owner.png" width = "500px" height = "500px">

@@ -73,7 +73,8 @@ class Blockchain {
                 block.hash = SHA256(JSON.stringify(block)).toString();
                 self.chain.push(block);
                 self.height = self.height + 1;
-                var isBlockChainValid = await self.validateChain()
+                var errorLog = await self.validateChain()
+                var isBlockChainValid = errorLog.length === 0
                 if (isBlockChainValid) {
                     resolve(block)
                 }
@@ -227,12 +228,11 @@ class Blockchain {
                 for (let block of self.chain) {
                     var isBlockValid = await block.validate();
                     if (!isBlockValid || (prevBlockHash != null && prevBlockHash !== block.previousBlockHash)) {
-                        isBlockChainValid = false;
-                        break;
+                        errorLog.push({invalidBlock: !isBlockValid, noLinkToPrevBlockHash : prevBlockHash != null && prevBlockHash !== block.previousBlockHash, block})
                     }
                     prevBlockHash = block.hash;
                 }
-                resolve(isBlockChainValid);
+                resolve(errorLog);
             } catch(err) {
                 reject(err)
             }
